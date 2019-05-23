@@ -9,7 +9,7 @@ will then merge of comment hte pull request.
 Prerequisites
 -------------
 
-- Respect the philosophy of the library (cf. <README.md>.)
+- Respect the philosophy of the library (cf. [README.md](README.md).)
 - Basic knowledge of Python 3.
 - Good knowledge of C.
 - Good knowledge of C++.
