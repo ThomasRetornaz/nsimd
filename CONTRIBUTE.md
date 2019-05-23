@@ -82,10 +82,12 @@ class controls how the generation will be done:
   + `c*`  = Pointer to const scalar parameter
   + `_`   = void (only for return type)
   + `p`   = Parameter (int)
-  In our case `v foo v` means that v takes a SIMD vector and returns a SIMD
-  vector. Several signatures will be generated for the intrinsic according to
-  the types it can supports. In our case the intrinsic only support floatting
-  point types.
+
+In our case `v foo v` means that v takes a SIMD vector and returns a SIMD
+vector. Several signatures will be generated for the intrinsic according to
+the types it can supports. In our case the intrinsic only support floatting
+point types.
+
 - `types` is a Python list indicating which types are supported by the
   intrinsic. If not given the intrinsic is supposed to support all types.
   Some Python lists are predefined to help the programmer:
