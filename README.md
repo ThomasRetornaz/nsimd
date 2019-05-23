@@ -203,6 +203,8 @@ found in `egg`.
 - The headers files must be compatible with C89 (when possible otherwise
   C99), C++98, C++11 and C++14.
 
+Please see <CONTRIBUTE.md> for more details.
+
 LICENSE
 =======
 
