@@ -83,7 +83,7 @@ class controls how the generation will be done:
   + `_`   = void (only for return type)
   + `p`   = Parameter (int)
 
-In our case `v foo v` means that v takes a SIMD vector and returns a SIMD
+In our case `v foo v` means that `v` takes a SIMD vector and returns a SIMD
 vector. Several signatures will be generated for the intrinsic according to
 the types it can supports. In our case the intrinsic only support floatting
 point types.
@@ -350,7 +350,31 @@ Here are some notes concerning the ARM implementation:
 Implementing the test for the operator
 --------------------------------------
 
-TODO
+Now that we have written the implementations for the `foo` operator we must
+write the corresponding tests. For testing all generatipm is done by the
+`egg/gen_tests.py`. Writing tests is more simple. The intrinsic that we
+just implemented can be tested by an already-written test code, namely in the
+`gen_test` Python function.
+
+Here is how the `egg/gen_tests.py` is organized:
+
+1. The entry point if the `doit` function located art the bottom of the file.
+2. In the `doit` function a dispatching is done according to the operator that
+   is to be tested. All operators cannot be tested by the same C code. The
+   reading of all different kind of tests is rather easy and we are not going
+   through all the code in this document.
+3. All Python functions generating test code begins with the following:
+   ```python
+       filename = get_filename(opts, op, typ, lang)
+       if filename == None:
+           return
+   ```
+   This must be the case for newly created function. The `get_filename`
+   function ensures that the file must be created with respect to the command
+   line options given to the `egg/hatch.py` script. Then note that to output
+   to a file the Python function `open_utf8` must be used to handle Windows
+   and to automatically put the MIT license at the beginning of generated
+   files.
 
 Conclusion
 ----------
