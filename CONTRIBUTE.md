@@ -376,7 +376,20 @@ Here is how the `egg/gen_tests.py` is organized:
    and to automatically put the MIT license at the beginning of generated
    files.
 
+If you need to create a new kind of tests then the best way is to copy-paste
+the Python function that produces tests that resembles the most to the tests
+you want. Then modify the newly function to suits your needs. Here is a
+quick overview of Python functions present in the `egg/gen_test.py` file:
 
+- `gen_nbtrue`, `gen_addv`, `gen_all_any` generate tests for reduction
+  operators.
+- `gen_reinterpret_convert` generates tests for non closed operators.
+- `gen_load_store` generates tests for load/store operators.
+- `gen_reverse` gemnerates tests for one type of shuffle but can be extended
+  for other kind of shuffles.
+- `gen_test` generates tests for "standard" operators, typically those who
+  do some computations. This is the kind of tests that can handle our `foo`
+  operator and therefore nothing has to be done on our part.
 
 Conclusion
 ----------
