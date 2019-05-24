@@ -1376,6 +1376,7 @@ def reverse1(simd_ext, typ):
 ## Horizontal sum
 
 def addv(simd_ext, typ):
+
     if simd_ext == 'neon128':
         if typ == 'f64':
             return '''\
@@ -1403,6 +1404,16 @@ def addv(simd_ext, typ):
                         tmp = vadd_{suf}(tmp, vext_{suf}(tmp, tmp, 1));
                         return vget_lane_{suf}(tmp, 0);
                     ''' .format(t=half_neon_typ(typ), **fmtspec)
+        elif typ[0] in ['i', 'u']:
+            le = 128 // int(typ[1:]);
+            return '''{typ} res = ({typ})0;
+                      {typ} buf[{le}];
+                      vst1q_{suf}(buf, {in0});
+                      for (int i = 0; i < {le}; i++) {{
+                        res += buf[i];
+                      }}
+                      return res;'''. \
+                      format(le=le, **fmtspec)
     elif simd_ext == 'aarch64':
         if typ == 'f16':
             return '''\
