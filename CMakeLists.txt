@@ -223,6 +223,7 @@ add_custom_command(TARGET gen.tests
 ## Create targets
 make_tests(${NSIMD_ROOT}/tests *.c FALSE)
 make_tests(${NSIMD_ROOT}/tests *.cpp TRUE)
+make_tests(${NSIMD_ROOT}/tests/modules/stl-algoritms *.cpp TRUE)
 
 ## Setup benchmarks generation target
 ## ----------------------------------------------------------------------------
@@ -239,6 +240,8 @@ if (ENABLE_BENCHMARK)
 
     ## Create targets
     make_benches(${NSIMD_ROOT}/benches "*.${SIMD_INFO_HATCH}.*.cpp")
+    ##
+    #make_benches(${NSIMD_ROOT}/benches/modules/stl-algoritms "*.${SIMD_INFO_HATCH}.*.cpp")
 endif()
 
 ## Setup doc generation target
